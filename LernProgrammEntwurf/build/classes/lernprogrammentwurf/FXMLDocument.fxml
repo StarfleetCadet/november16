@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lernprogrammentwurf.FXMLDocumentController">
+    <children>
+      <TabPane prefHeight="500.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Fragen erstellen">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="800.0">
+                     <children>
+                          <Button fx:id="btnAddQuestion" layoutX="650.0" layoutY="407.0" onAction="#handleBtnAddQuestionAction" prefHeight="25.0" prefWidth="114.0" text="Frage hinzufügen" AnchorPane.bottomAnchor="15.0" />
+                          <Label fx:id="label" layoutX="726.0" layoutY="415.0" minHeight="16" minWidth="69" AnchorPane.bottomAnchor="19.0" />
+                        <TextArea fx:id="questionField" layoutX="22.0" layoutY="30.0" prefHeight="300.0" prefWidth="350.0" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="30.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                        <TextArea fx:id="answerField" prefHeight="300.0" prefWidth="350.0" wrapText="true" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                        <Label layoutX="22.0" layoutY="9.0" text="Frage">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label layoutX="410.0" layoutY="9.0" text="Antwort">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Slider fx:id="levelSlider" blockIncrement="1.0" layoutX="22.0" layoutY="400.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" AnchorPane.bottomAnchor="10.0" />
+                        <ComboBox fx:id="categoriesComboBox" layoutX="315.0" layoutY="411.0" prefWidth="150.0" promptText="Kategorie wählen" AnchorPane.bottomAnchor="15.0" />
+                        <Label layoutX="22.0" layoutY="384.0" text="Schwierigkeitsgrad" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Lernen">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextArea fx:id="questionLearnField" layoutX="35.0" layoutY="38.0" prefHeight="200.0" prefWidth="350.0" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="30.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                        <TextArea fx:id="answerLearnField" editable="false" layoutX="410.0" layoutY="38.0" prefHeight="200.0" prefWidth="350.0" wrapText="true" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="30.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                        <Label layoutX="20.0" layoutY="14.0" text="Frage">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label layoutX="410.0" layoutY="14.0" text="Antwort">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <TextArea fx:id="notesField" layoutX="410.0" layoutY="278.0" prefHeight="150.0" prefWidth="350.0" wrapText="true" AnchorPane.bottomAnchor="23.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextArea>
+                        <Label layoutX="410.0" layoutY="259.0" text="Antwort Notitzen">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <ComboBox fx:id="chooseCategoryComboBox" layoutX="20.0" layoutY="278.0" prefWidth="150.0" promptText="Kategorie" />
+                        <ComboBox fx:id="chooseLevelComboBox" layoutX="220.0" layoutY="278.0" prefWidth="150.0" promptText="Schwierigkeitsgrad" />
+                        <Button fx:id="btnDiscoverAnswer" layoutX="687.0" layoutY="242.0" mnemonicParsing="false" onAction="#handleBtnDiscoverAnswerAction" text="Aufdecken" />
+                        <Slider fx:id="scoreSlider" layoutX="14.0" layoutY="376.0" prefHeight="14.0" prefWidth="361.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                        <Label layoutX="14.0" layoutY="420.0" text="Bewerte Dich selbst in %" />
+                        <Label layoutX="14.0" layoutY="336.0" text="Wie vollständig wurde die Frage beantwortet ?" />
+                        <Button fx:id="btnNewQuestion" layoutX="20.0" layoutY="242.0" mnemonicParsing="false" onAction="#handleBtnNewQuestionAction" text="Neue Frage" />
+                        <Button fx:id="btnSafeScore" layoutX="306.0" layoutY="416.0" mnemonicParsing="false" onAction="#handleBtnSafeScoreAction" text="Speichern" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</AnchorPane>

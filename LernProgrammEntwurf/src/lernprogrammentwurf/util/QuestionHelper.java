@@ -5,6 +5,9 @@
  */
 package lernprogrammentwurf.util;
 
+import lernprogrammentwurf.model.DBConnectionBuilder;
+import lernprogrammentwurf.model.Question;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,61 +16,54 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import lernprogrammentwurf.model.DBConnectionBuilder;
-import lernprogrammentwurf.model.Question;
-
 
 /**
- *
  * @author aviva
  */
-public class QuestionHelper 
-{
-    private static List<Integer> getQuestionIdsByCategoryAndLevel(String category, int level)
-    {
+public class QuestionHelper {
+    private static List<Integer> getQuestionIdsByCategoryAndLevel(String category, int level) {
         List<Integer> questionIds = new ArrayList<>();
-        try{
-            
+        try {
+
             DBConnectionBuilder myBuilder = new DBConnectionBuilder();
             Connection conn = myBuilder.getConnection();
-            
-            String query ="SELECT id FROM questions WHERE category=? AND level=?;";
+
+            String query = "SELECT id FROM questions WHERE category=? AND level=?;";
             PreparedStatement preparedStatement = conn.prepareStatement(query);
-            preparedStatement.setString(1,category);
-            preparedStatement.setInt(2,level);
+            preparedStatement.setString(1, category);
+            preparedStatement.setInt(2, level);
             ResultSet rs = preparedStatement.executeQuery();
-            
-            while (rs.next())
-            {
+            while (rs.next()) {
                 questionIds.add(rs.getInt("id"));
             }
-        } 
-        catch (SQLException ex)
-        {
+
+
+        } catch (SQLException ex) {
             Logger.getLogger(QuestionHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         return questionIds;
+    }
 
+    private static Integer selectRandomQuestionId(List<Integer> ids) {
+        int index = (int) (Math.random() * ids.size());
+
+        if (ids.size() > 0) {
+            return ids.get(index);
+        }
+
+        return null;
     }
-    
-    private static int selectRandomQuestionId(List<Integer> ids)
-    {
-        int index = (int) (Math.random()* ids.size());
-        
-        return ids.get(index);
-    }
-    
-    public static Question getRandomQuestion(String category, int level)
-    {
+
+    public static Question getRandomQuestion(String category, int level) {
         List<Integer> questionIds = getQuestionIdsByCategoryAndLevel(category, level);
-        int randomId = selectRandomQuestionId(questionIds);
-        
+        Integer randomId = selectRandomQuestionId(questionIds);
+
+        if (randomId == null) return null;
+
         Question randomQuestion = new Question();
         randomQuestion.getById(randomId);
-        
+
         return randomQuestion;
-        
     }
-    
 }
+
